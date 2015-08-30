@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.4" type="plugin" group="content" method="upgrade">
+	<name>plg_content_joomlarrssb</name>
+	<creationDate>2015-08-30</creationDate>
+	<author>Joomla! Project</author>
+	<copyright>(C) 2015 Open Source Matters. All rights reserved.</copyright>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>http://www.joomla.org</authorUrl>
+	<version>0.0.1-dev</version>
+	<license>GNU/GPL Version 2 or later</license>
+	<description>PLG_CONTENT_JOOMLARRSSB_XML_DESCRIPTION</description>
+	<scriptfile>script.php</scriptfile>
+	<media destination="joomlarrssb" folder="media">
+		<folder>css</folder>
+	</media>
+	<config>
+		<fields name="params">
+			<fieldset name="display">
+				<field name="displayEmail" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_EMAIL_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_EMAIL_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayFacebook" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_FACEBOOK_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_FACEBOOK_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayGoogle" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_GOOGLE_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_GOOGLE_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayLinkedin" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_LINKEDIN_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_LINKEDIN_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayPinterest" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_PINTEREST_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_PINTEREST_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayStumbleupon" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_STUMBLEUPON_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_STUMBLEUPON_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayTwitter" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_TWITTER_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_TWITTER_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="displayCategories" type="category" extension="com_content" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_CATEGORIES_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION" multiple="true" size="10"/>
+				<field name="displayPosition" type="radio" class="btn-group" default="bottom" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_DESCRIPTION">
+					<option value="top">PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_OPTION_TOP</option>
+					<option value="bottom">PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_OPTION_BOTTOM</option>
+				</field>
+				<field name="viewArchive" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_ARCHIVE_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_ARCHIVE_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="viewArticle" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_ARTICLE_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_ARTICLE_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="viewCategory" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_CATEGORY_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_CATEGORY_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="viewFeatured" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_FEATURED_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_VIEW_FEATURED_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+	<files>
+		<folder>language</folder>
+		<folder>media</folder>
+		<folder>tmpl</folder>
+		<filename plugin="joomlarrssb">joomlarrssb.php</filename>
+	</files>
+</extension>
