@@ -12,6 +12,7 @@
 	<scriptfile>script.php</scriptfile>
 	<media destination="joomlarrssb" folder="media">
 		<folder>css</folder>
+		<folder>js</folder>
 	</media>
 	<config>
 		<fields name="params">
