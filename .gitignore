@@ -1,0 +1,10 @@
+# IDE & System Related Files #
+.buildpath
+.project
+.settings
+.DS_Store
+.idea
+
+# Ignore files/folders related to packaging
+/packaging
+/joomlarrssb.zip
