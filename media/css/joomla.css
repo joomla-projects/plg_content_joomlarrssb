@@ -13,6 +13,10 @@
 
 /* Smartphones and Tablets */
 @media only screen and (min-width: 321px) and (max-width: 767px) {
+    .rrssb-buttons li {
+        width: 42px !important;
+    }
+
     .rrssb-buttons li a .rrssb-text {
         visibility: hidden;
     }
