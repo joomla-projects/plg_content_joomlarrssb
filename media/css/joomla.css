@@ -6,35 +6,8 @@
     border-radius: 0;
 }
 
-.rrssb-buttons .rrssb-icon {
-    padding-top: 5px;
-}
-
-/* Smartphones */
-@media only screen and (max-width: 480px) {
-    .rrssb-buttons.small-format .rrssb-icon {
-        padding-top: 10px;
-        margin-top: 2px;
-    }
-
-    .rrssb-buttons.small-format li {
-        height: 110%;
-    }
-}
-
-/* Smartphones to Tablets */
-@media only screen and (min-width: 481px) and (max-width: 767px) {
-    .rrssb-buttons li.small a .rrssb-icon {
-        padding-top: 5px;
-    }
-}
-
 /* Smartphones and Tablets */
 @media only screen and (min-width: 321px) and (max-width: 767px) {
-    .rrssb-buttons .rrssb-text {
-        display: none;
-    }
-
     .rrssb-buttons li {
         width: 42px !important;
     }
