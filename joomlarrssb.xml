@@ -41,7 +41,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="displayCategories" type="category" extension="com_content" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_CATEGORIES_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION" multiple="true" size="10"/>
+				<field name="displayCategories" type="category" extension="com_content" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_CATEGORIES_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_CATEGORIES_DESCRIPTION" multiple="true" size="10" />
 				<field name="displayPosition" type="radio" class="btn-group" default="bottom" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_DESCRIPTION">
 					<option value="top">PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_OPTION_TOP</option>
 					<option value="bottom">PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_POSITION_OPTION_BOTTOM</option>
@@ -62,6 +62,14 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
+			</fieldset>
+			<fieldset name="shortener">
+				<field name="useYOURLS" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_USE_YOURLS_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_USE_YOURLS_DESCRIPTION">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+				<field name="YOURLSUrl" type="text" size="30" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_URL_DESCRIPTION" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_URL_LABEL" default="http://joom.la" />
+				<field name="YOURLSAPIKey" type="text" size="30" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_API_KEY_DESCRIPTION" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_API_KEY_LABEL" default="2909bc72e7" />
 			</fieldset>
 		</fields>
 	</config>

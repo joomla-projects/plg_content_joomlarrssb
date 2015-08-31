@@ -10,6 +10,7 @@ defined('_JEXEC') or die;
 
 // We require com_content's route helper
 JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
+JLoader::register('JHttpFactory', JPATH_SITE . 'libraries/joomla/http/factory.php');
 
 /**
  * Ridiculously Responsive Social Sharing Buttons for joomla.org Content Plugin
@@ -67,6 +68,7 @@ class PlgContentJoomlarrssb extends JPlugin
 		$selectedCategories = $this->params->def('displayCategories', '');
 		$position           = $this->params->def('displayPosition', 'top');
 		$view               = $this->app->input->getCmd('view', '');
+		$shorten            = $this->params->def('useYOURLS', true);
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
@@ -157,6 +159,22 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Build the URL for the plugins to use
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
+
+		if($shorten)
+		{
+			$http = JHttpFactory::getHttp();
+			$data = array(
+					'signature' => $this->params->def('YOURLSAPIKey', '2909bc72e7'),
+					'action' => 'shorturl',
+					'url' => $itemURL,
+					'format' => 'simple'
+			);
+			$response = $http->post( $this->params->def('YOURLSUrl', 'http://joom.la').'/yourls-api.php', $data);
+			if($response->code == 200)
+			{
+				$itemURL = $response->body;
+			}
+		}
 
 		// Get the content and merge in the template; first see if $article->text is defined
 		if (!isset($article->text))
