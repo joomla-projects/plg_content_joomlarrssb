@@ -10,7 +10,6 @@ defined('_JEXEC') or die;
 
 // We require com_content's route helper
 JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
-JLoader::register('JHttpFactory', JPATH_SITE . 'libraries/joomla/http/factory.php');
 
 /**
  * Ridiculously Responsive Social Sharing Buttons for joomla.org Content Plugin
@@ -160,19 +159,28 @@ class PlgContentJoomlarrssb extends JPlugin
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
-		if($shorten)
+		if ($shorten)
 		{
-			$http = JHttpFactory::getHttp();
-			$data = array(
-					'signature' => $this->params->def('YOURLSAPIKey', '2909bc72e7'),
-					'action' => 'shorturl',
-					'url' => $itemURL,
-					'format' => 'simple'
-			);
-			$response = $http->post( $this->params->def('YOURLSUrl', 'http://joom.la').'/yourls-api.php', $data);
-			if($response->code == 200)
+			$http     = JHttpFactory::getHttp();
+			$data     = [
+				'signature' => $this->params->def('YOURLSAPIKey', '2909bc72e7'),
+				'action'    => 'shorturl',
+				'url'       => $itemURL,
+				'format'    => 'simple'
+			];
+
+			try
 			{
-				$itemURL = $response->body;
+				$response = $http->post($this->params->def('YOURLSUrl', 'http://joom.la') . '/yourls-api.php', $data);
+
+				if ($response->code == 200)
+				{
+					$itemURL = $response->body;
+				}
+			}
+			catch (Exception $e)
+			{
+				// In case of an error connecting out here, we can still use the 'real' URL.  Carry on.
 			}
 		}
 
