@@ -1,3 +1,7 @@
+.rrssb-buttons li a {
+    border-radius: 0;
+}
+
 .rrssb-buttons li a .rrssb-text {
     font-size: 11px;
 }
