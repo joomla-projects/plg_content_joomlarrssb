@@ -160,6 +160,10 @@ class PlgContentJoomlarrssb extends JPlugin
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
+		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
+		$document->addCustomTag('<meta property="og:type" content="article"/>');
+		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
+
 		if($shorten)
 		{
 			$http = JHttpFactory::getHttp();
@@ -188,12 +192,8 @@ class PlgContentJoomlarrssb extends JPlugin
 
 		if (!empty($matches))
 		{
-			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . $matches[1] . '"/>');
+			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
 		}
-
-		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
-		$document->addCustomTag('<meta property="og:type" content="article"/>');
-		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
 
 		// Load the layout
 		ob_start();
