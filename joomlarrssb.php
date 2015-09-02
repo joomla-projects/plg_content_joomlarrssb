@@ -159,6 +159,26 @@ class PlgContentJoomlarrssb extends JPlugin
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
+		// Get the content and merge in the template; first see if $article->text is defined
+		if (!isset($article->text))
+		{
+			$article->text = $article->introtext;
+		}
+
+		// Add extra template metadata
+		$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
+		preg_match($pattern, $article->text, $matches);
+
+		if (!empty($matches))
+		{
+			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . $matches[1] . '"/>');
+		}
+
+		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
+		$document->addCustomTag('<meta property="og:type" content="article"/>');
+		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
+
+		// Apply our shortened URL if configured
 		if ($shorten)
 		{
 			$http     = JHttpFactory::getHttp();
@@ -183,25 +203,6 @@ class PlgContentJoomlarrssb extends JPlugin
 				// In case of an error connecting out here, we can still use the 'real' URL.  Carry on.
 			}
 		}
-
-		// Get the content and merge in the template; first see if $article->text is defined
-		if (!isset($article->text))
-		{
-			$article->text = $article->introtext;
-		}
-
-		// Add extra template metadata
-		$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
-		preg_match($pattern, $article->text, $matches);
-
-		if (!empty($matches))
-		{
-			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . $matches[1] . '"/>');
-		}
-
-		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
-		$document->addCustomTag('<meta property="og:type" content="article"/>');
-		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
 
 		// Load the layout
 		ob_start();
