@@ -171,7 +171,7 @@ class PlgContentJoomlarrssb extends JPlugin
 
 		if (!empty($matches))
 		{
-			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . $matches[1] . '"/>');
+			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
 		}
 
 		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
