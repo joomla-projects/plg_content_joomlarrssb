@@ -175,7 +175,8 @@ class PlgContentJoomlarrssb extends JPlugin
 			$document->addCustomTag('<meta name="twitter:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
 		}
 
-		$description = !empty($article->metadesc) ? $article->metadesc : JHtml::_('string.truncate', $article->introtest, 200, true, false);
+		$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
+		$description = JHtml::_('string.truncate', $description, 200, true, false);
 
 		// OpenGraph metadata
 		$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
