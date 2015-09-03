@@ -172,11 +172,20 @@ class PlgContentJoomlarrssb extends JPlugin
 		if (!empty($matches))
 		{
 			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
+			$document->addCustomTag('<meta property="twitter:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
 		}
 
+		$description = !empty($article->metadesc) ? $article->metadesc : JHtml::_('string.truncate', $article->introtest, 200, true, false);
+
+		// OpenGraph metadata
+		$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
 		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
 		$document->addCustomTag('<meta property="og:type" content="article"/>');
 		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
+
+		// Twitter Card metadata
+		$document->addCustomTag('<meta property="twitter:description" content="' . $description . '"/>');
+		$document->addCustomTag('<meta property="twitter:title" content="' . JHtml::_('string.truncate', $article->title, 70, true, false) . '"/>');
 
 		// Apply our shortened URL if configured
 		if ($shorten)
