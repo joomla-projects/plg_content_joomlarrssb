@@ -56,18 +56,16 @@ class PlgContentJoomlarrssb extends JPlugin
 	 */
 	public function onContentAfterTitle($context, &$article, &$params, $page)
 	{
-		// Set the parameters
-		$document           = JFactory::getDocument();
-		$displayEmail       = $this->params->get('displayEmail', '1');
-		$displayFacebook    = $this->params->get('displayFacebook', '1');
-		$displayGoogle      = $this->params->get('displayGoogle', '1');
-		$displayLinkedin    = $this->params->get('displayLinkedin', '1');
-		$displayPinterest   = $this->params->get('displayPinterest', '1');
-		$displayTwitter     = $this->params->get('displayTwitter', '1');
-		$selectedCategories = $this->params->def('displayCategories', '');
-		$position           = $this->params->def('displayPosition', 'top');
-		$view               = $this->app->input->getCmd('view', '');
-		$shorten            = $this->params->def('useYOURLS', true);
+		/*
+		 * Validate the plugin should run in the current context
+		 */
+		$document = JFactory::getDocument();
+
+		// Context check - This only works for com_content
+		if (strpos($context, 'com_content') === false)
+		{
+			return;
+		}
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
@@ -80,6 +78,22 @@ class PlgContentJoomlarrssb extends JPlugin
 		{
 			return;
 		}
+
+		/*
+		 * Start processing the plugin event
+		 */
+
+		// Set the parameters
+		$displayEmail       = $this->params->get('displayEmail', '1');
+		$displayFacebook    = $this->params->get('displayFacebook', '1');
+		$displayGoogle      = $this->params->get('displayGoogle', '1');
+		$displayLinkedin    = $this->params->get('displayLinkedin', '1');
+		$displayPinterest   = $this->params->get('displayPinterest', '1');
+		$displayTwitter     = $this->params->get('displayTwitter', '1');
+		$selectedCategories = $this->params->def('displayCategories', '');
+		$position           = $this->params->def('displayPosition', 'top');
+		$view               = $this->app->input->getCmd('view', '');
+		$shorten            = $this->params->def('useYOURLS', true);
 
 		// Check whether we're displaying the plugin in the current view
 		if ($this->params->get('view' . ucfirst($view), '1') == '0')
@@ -165,10 +179,13 @@ class PlgContentJoomlarrssb extends JPlugin
 			$article->text = $article->introtext;
 		}
 
-		// Add extra template metadata
+		// Always run this preg_match as the results are also used in the layout
 		$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
 		preg_match($pattern, $article->text, $matches);
 
+		/*
+		 * Add template metadata per the context
+		 */
 		if (!empty($matches))
 		{
 			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
@@ -178,15 +195,19 @@ class PlgContentJoomlarrssb extends JPlugin
 		$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
 		$description = JHtml::_('string.truncate', $description, 200, true, false);
 
-		// OpenGraph metadata
-		$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
-		$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
-		$document->addCustomTag('<meta property="og:type" content="article"/>');
-		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
+		// The metadata in this check should only be applied on a single article view
+		if ($context === 'com_content.article')
+		{
+			// OpenGraph metadata
+			$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
+			$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
+			$document->addCustomTag('<meta property="og:type" content="article"/>');
+			$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
 
-		// Twitter Card metadata
-		$document->addCustomTag('<meta name="twitter:description" content="' . $description . '"/>');
-		$document->addCustomTag('<meta name="twitter:title" content="' . JHtml::_('string.truncate', $article->title, 70, true, false) . '"/>');
+			// Twitter Card metadata
+			$document->addCustomTag('<meta name="twitter:description" content="' . $description . '"/>');
+			$document->addCustomTag('<meta name="twitter:title" content="' . JHtml::_('string.truncate', $article->title, 70, true, false) . '"/>');
+		}
 
 		// Apply our shortened URL if configured
 		if ($shorten)
