@@ -367,6 +367,8 @@ class PlgContentJoomlarrssb extends JPlugin
 			$document->addCustomTag('<meta name="twitter:image" content="' . $imageURL . '"/>');
 		}
 
+		$description = !empty($category->metadesc) ? $category->metadesc : strip_tags($category->description);
+
 		// OpenGraph metadata
 		$document->addCustomTag('<meta property="og:title" content="' . $category->title . '"/>');
 		$document->addCustomTag('<meta property="og:type" content="article"/>');
@@ -378,8 +380,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Add the description too if it isn't empty
 		if (!empty($category->description))
 		{
-			$document->addCustomTag('<meta property="og:description" content="' . $category->description . '"/>');
-			$document->addCustomTag('<meta name="twitter:description" content="' . $category->description . '"/>');
+			$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
+			$document->addCustomTag('<meta name="twitter:description" content="' . $description . '"/>');
 		}
 
 		// We're done here
