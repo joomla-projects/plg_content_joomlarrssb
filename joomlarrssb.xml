@@ -5,8 +5,8 @@
 	<author>Joomla! Project</author>
 	<copyright>(C) 2015 Open Source Matters. All rights reserved.</copyright>
 	<authorEmail>admin@joomla.org</authorEmail>
-	<authorUrl>http://www.joomla.org</authorUrl>
-	<version>1.0.3-dev</version>
+	<authorUrl>https://www.joomla.org</authorUrl>
+	<version>1.1.0-dev</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_CONTENT_JOOMLARRSSB_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>

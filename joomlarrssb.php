@@ -27,6 +27,14 @@ class PlgContentJoomlarrssb extends JPlugin
 	protected $app;
 
 	/**
+	 * Affects constructor behavior. If true, language files will be loaded automatically.
+	 *
+	 * @var    boolean
+	 * @since  1.0
+	 */
+	protected $autoloadLanguage = true;
+
+	/**
 	 * Database object
 	 *
 	 * @var    JDatabaseDriver
@@ -35,12 +43,15 @@ class PlgContentJoomlarrssb extends JPlugin
 	protected $db;
 
 	/**
-	 * Affects constructor behavior. If true, language files will be loaded automatically.
+	 * Flag if the category has been processed
+	 *
+	 * Since Joomla lacks a plugin event specifically for category related data, we must process this ourselves using the
+	 * available data from the request.
 	 *
 	 * @var    boolean
-	 * @since  1.0
+	 * @since  1.1
 	 */
-	protected $autoloadLanguage = true;
+	private static $hasProcessedCategory = false;
 
 	/**
 	 * Listener for the `onContentAfterTitle` event
@@ -186,18 +197,19 @@ class PlgContentJoomlarrssb extends JPlugin
 		/*
 		 * Add template metadata per the context
 		 */
-		if (!empty($matches))
-		{
-			$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
-			$document->addCustomTag('<meta name="twitter:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
-		}
-
-		$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
-		$description = JHtml::_('string.truncate', $description, 200, true, false);
 
 		// The metadata in this check should only be applied on a single article view
 		if ($context === 'com_content.article')
 		{
+			if (!empty($matches))
+			{
+				$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
+				$document->addCustomTag('<meta name="twitter:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
+			}
+
+			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
+			$description = JHtml::_('string.truncate', $description, 200, true, false);
+
 			// OpenGraph metadata
 			$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
 			$document->addCustomTag('<meta property="og:title" content="' . $article->title . '"/>');
@@ -254,6 +266,124 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		return;
+	}
+
+	/**
+	 * Listener for the `onContentPrepare` event
+	 *
+	 * @param   string   $context   The context of the content being passed to the plugin.
+	 * @param   object   &$article  The article object.  Note $article->text is also available
+	 * @param   object   &$params   The article params
+	 * @param   integer  $page      The 'page' number
+	 *
+	 * @return  void
+	 *
+	 * @since   1.1
+	 */
+	public function onContentPrepare($context, &$article, &$params, $page)
+	{
+		/*
+		 * Validate the plugin should run in the current context
+		 */
+		$document = JFactory::getDocument();
+
+		// Has the plugin already triggered?
+		if (self::$hasProcessedCategory)
+		{
+			return;
+		}
+
+		// Context check - This only works for com_content
+		// TODO - Reinstate this check when the core bug that has the wrong context being used is fixed
+		/*if (strpos($context, 'com_content') === false)
+		{
+			self::$hasProcessedCategory = true;
+
+			return;
+		}*/
+
+		// Check if the plugin is enabled
+		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
+		{
+			self::$hasProcessedCategory = true;
+
+			return;
+		}
+
+		// Make sure the document is an HTML document
+		if ($document->getType() != 'html')
+		{
+			self::$hasProcessedCategory = true;
+
+			return;
+		}
+
+		/*
+		 * Start processing the plugin event
+		 */
+
+		// Set the parameters
+		$view = $this->app->input->getCmd('view', '');
+
+		// Check whether we're displaying the plugin in the current view
+		if ($this->params->get('view' . ucfirst($view), '1') == '0')
+		{
+			self::$hasProcessedCategory = true;
+
+			return;
+		}
+
+		// The featured view is not yet supported and the article view never will be
+		if (in_array($view, ['article', 'featured']))
+		{
+			self::$hasProcessedCategory = true;
+
+			return;
+		}
+
+		// Get the requested category
+		/** @var JTableCategory $category */
+		$category = JTable::getInstance('Category');
+		$category->load($this->app->input->getUint('id'));
+
+		// Build the URL for the plugins to use
+		$siteURL = substr(JUri::root(), 0, -1);
+		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getCategoryRoute($category->id));
+
+		// Check if there is a category image to use for the metadata
+		$categoryParams = json_decode($category->params, true);
+
+		if (isset($categoryParams['image']) && !empty($categoryParams['image']))
+		{
+			$imageURL = $categoryParams['image'];
+
+			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
+			if (strpos($imageURL, 'http') !== 0)
+			{
+				$imageURL = $siteURL . '/' . $imageURL;
+			}
+
+			$document->addCustomTag('<meta property="og:image" content="' . $imageURL . '"/>');
+			$document->addCustomTag('<meta name="twitter:image" content="' . $imageURL . '"/>');
+		}
+
+		// OpenGraph metadata
+		$document->addCustomTag('<meta property="og:title" content="' . $category->title . '"/>');
+		$document->addCustomTag('<meta property="og:type" content="article"/>');
+		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
+
+		// Twitter Card metadata
+		$document->addCustomTag('<meta name="twitter:title" content="' . JHtml::_('string.truncate', $category->title, 70, true, false) . '"/>');
+
+		// Add the description too if it isn't empty
+		if (!empty($category->description))
+		{
+			$document->addCustomTag('<meta property="og:description" content="' . $category->description . '"/>');
+			$document->addCustomTag('<meta name="twitter:description" content="' . $category->description . '"/>');
+		}
+
+		// We're done here
+		self::$hasProcessedCategory = true;
 	}
 
 	/**
