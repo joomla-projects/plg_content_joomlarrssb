@@ -224,7 +224,6 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Apply our shortened URL if configured
 		if ($shorten)
 		{
-			$http     = JHttpFactory::getHttp();
 			$data     = [
 				'signature' => $this->params->def('YOURLSAPIKey', '2909bc72e7'),
 				'action'    => 'shorturl',
@@ -234,7 +233,7 @@ class PlgContentJoomlarrssb extends JPlugin
 
 			try
 			{
-				$response = $http->post($this->params->def('YOURLSUrl', 'http://joom.la') . '/yourls-api.php', $data);
+				$response = JHttpFactory::getHttp()->post($this->params->def('YOURLSUrl', 'http://joom.la') . '/yourls-api.php', $data);
 
 				if ($response->code == 200)
 				{
@@ -294,13 +293,12 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Context check - This only works for com_content
-		// TODO - Reinstate this check when the core bug that has the wrong context being used is fixed
-		/*if (strpos($context, 'com_content') === false)
+		if (strpos($context, 'com_content') === false)
 		{
 			self::$hasProcessedCategory = true;
 
 			return;
-		}*/
+		}
 
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
