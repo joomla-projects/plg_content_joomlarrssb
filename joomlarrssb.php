@@ -201,10 +201,13 @@ class PlgContentJoomlarrssb extends JPlugin
 		// The metadata in this check should only be applied on a single article view
 		if ($context === 'com_content.article')
 		{
+			/*
+			 * The Joomla API doesn't support rendering meta tags as <meta property="" />, only <meta name="" />
+			 */
 			if (!empty($matches))
 			{
 				$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
-				$document->addCustomTag('<meta name="twitter:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
+				$document->setMetaData('twitter:image', $siteURL . '/' . $matches[1]);
 			}
 
 			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
@@ -217,8 +220,8 @@ class PlgContentJoomlarrssb extends JPlugin
 			$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
 
 			// Twitter Card metadata
-			$document->addCustomTag('<meta name="twitter:description" content="' . $description . '"/>');
-			$document->addCustomTag('<meta name="twitter:title" content="' . JHtml::_('string.truncate', $article->title, 70, true, false) . '"/>');
+			$document->setMetaData('twitter:description', $description);
+			$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));
 		}
 
 		// Apply our shortened URL if configured
@@ -351,6 +354,9 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Check if there is a category image to use for the metadata
 		$categoryParams = json_decode($category->params, true);
 
+		/*
+		 * The Joomla API doesn't support rendering meta tags as <meta property="" />, only <meta name="" />
+		 */
 		if (isset($categoryParams['image']) && !empty($categoryParams['image']))
 		{
 			$imageURL = $categoryParams['image'];
@@ -362,7 +368,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			}
 
 			$document->addCustomTag('<meta property="og:image" content="' . $imageURL . '"/>');
-			$document->addCustomTag('<meta name="twitter:image" content="' . $imageURL . '"/>');
+			$document->setMetaData('twitter:image', $imageURL);
 		}
 
 		$description = !empty($category->metadesc) ? $category->metadesc : strip_tags($category->description);
@@ -373,13 +379,13 @@ class PlgContentJoomlarrssb extends JPlugin
 		$document->addCustomTag('<meta property="og:url" content="' . $itemURL . '"/>');
 
 		// Twitter Card metadata
-		$document->addCustomTag('<meta name="twitter:title" content="' . JHtml::_('string.truncate', $category->title, 70, true, false) . '"/>');
+		$document->setMetaData('twitter:title', JHtml::_('string.truncate', $category->title, 70, true, false));
 
 		// Add the description too if it isn't empty
 		if (!empty($category->description))
 		{
 			$document->addCustomTag('<meta property="og:description" content="' . $description . '"/>');
-			$document->addCustomTag('<meta name="twitter:description" content="' . $description . '"/>');
+			$document->setMetaData('twitter:description', $description);
 		}
 
 		// We're done here
