@@ -203,7 +203,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
 			preg_match($pattern, $article->text, $matches);
 
-			$imageOg = $matches[1];
+			$imageOg = isset($matches[1]) ? $matches[1] : '';
 		}
 
 		/*
