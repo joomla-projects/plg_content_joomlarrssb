@@ -184,9 +184,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
-		// Check if we have an intro text image (Priority: intro image, full text, content)
+		// Check if we have an intro text image (Priority: fulltext image, intro image, content image)
 		$images = json_decode($article->images);
-
 
 		if (isset($images->image_fulltext) && !empty($images->image_fulltext))
 		{
