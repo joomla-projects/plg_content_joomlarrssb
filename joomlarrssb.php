@@ -184,15 +184,27 @@ class PlgContentJoomlarrssb extends JPlugin
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
-		// Get the content and merge in the template; first see if $article->text is defined
-		if (!isset($article->text))
-		{
-			$article->text = $article->introtext;
-		}
+		// Check if we have an intro text image (First priority)
+		$article->images = json_decode($article->images);
 
-		// Always run this preg_match as the results are also used in the layout
-		$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
-		preg_match($pattern, $article->text, $matches);
+		if (!empty($article->images->image_intro))
+		{
+			$imageOg = $article->images->image_intro;
+		}
+		else
+		{
+			// Get the content and merge in the template; first see if $article->text is defined
+			if (!isset($article->text))
+			{
+				$article->text = $article->introtext;
+			}
+
+			// Always run this preg_match as the results are also used in the layout
+			$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
+			preg_match($pattern, $article->text, $matches);
+
+			$imageOg = $matches[1];
+		}
 
 		/*
 		 * Add template metadata per the context
@@ -204,10 +216,10 @@ class PlgContentJoomlarrssb extends JPlugin
 			/*
 			 * The Joomla API doesn't support rendering meta tags as <meta property="" />, only <meta name="" />
 			 */
-			if (!empty($matches))
+			if (!empty($imageOg))
 			{
-				$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $matches[1] . '"/>');
-				$document->setMetaData('twitter:image', $siteURL . '/' . $matches[1]);
+				$document->addCustomTag('<meta property="og:image" content="' . $siteURL . '/' . $imageOg . '"/>');
+				$document->setMetaData('twitter:image', $siteURL . '/' . $imageOg);
 			}
 
 			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
