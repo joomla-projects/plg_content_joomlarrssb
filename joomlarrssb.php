@@ -112,12 +112,6 @@ class PlgContentJoomlarrssb extends JPlugin
 			return;
 		}
 
-		// Check that we're actually displaying a button
-		if ($displayEmail == '0' && $displayFacebook == '0' && $displayGoogle == '0' && $displayLinkedin == '0' && $displayPinterest == '0' && $displayTwitter == '0')
-		{
-			return;
-		}
-
 		// If we're not in the article view, we have to get the full $article object ourselves
 		if ($view == 'featured' || $view == 'category')
 		{
@@ -238,6 +232,12 @@ class PlgContentJoomlarrssb extends JPlugin
 			// Twitter Card metadata
 			$document->setMetaData('twitter:description', $description);
 			$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));
+		}
+
+		// Check that we're actually displaying a button
+		if ($displayEmail == '0' && $displayFacebook == '0' && $displayGoogle == '0' && $displayLinkedin == '0' && $displayPinterest == '0' && $displayTwitter == '0')
+		{
+			return;
 		}
 
 		// Apply our shortened URL if configured
