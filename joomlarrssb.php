@@ -178,7 +178,7 @@ class PlgContentJoomlarrssb extends JPlugin
 		$siteURL = substr(JUri::root(), 0, -1);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
-		// Check if we have an intro text image (Priority: fulltext image, intro image, content image)
+		// Check if we have an intro text image (Priority: fulltext image, intro image, content image, category image)
 		$images = json_decode($article->images);
 
 		if (isset($images->image_fulltext) && !empty($images->image_fulltext))
@@ -202,6 +202,31 @@ class PlgContentJoomlarrssb extends JPlugin
 			preg_match($pattern, $article->text, $matches);
 
 			$imageOg = isset($matches[1]) ? $matches[1] : '';
+
+			// Check for category image
+			if (empty($imageOg))
+			{
+				// We get the article mostly from content plugin, so we need to do a query and can't do a join..
+				$query = $this->db->getQuery(true);
+
+				$query->select('params')
+					->from($this->db->quoteName('#__categories'))
+					->where($this->db->quoteName('id') . ' = ' . $this->db->q($article->catid));
+
+				$this->db->setQuery($query);
+
+				$result = $this->db->loadResult();
+
+				if ($result)
+				{
+					$categoryParams = json_decode($result);
+
+					if (isset($categoryParams->image) && !empty($categoryParams->image))
+					{
+						$imageOg = $categoryParams->image;
+					}
+				}
+			}
 		}
 
 		/*
