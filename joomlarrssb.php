@@ -174,8 +174,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Create the article slug
 		$article->slug = $article->alias ? ($article->id . ':' . $article->alias) : $article->id;
 
-		// Build the URL for the plugins to use
-		$siteURL = substr(JUri::root(), 0, -1);
+		// Build the URL for the plugins to use - the site URL should only be the scheme and host segments, JRoute will take care of the rest
+		$siteURL = JUri::getInstance()->toString(['scheme', 'host', 'port']);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Check if we have an intro text image (Priority: fulltext image, intro image, content image, category image)
