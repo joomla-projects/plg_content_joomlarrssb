@@ -235,7 +235,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
 			if (strpos($imageOg, 'http') !== 0)
 			{
-				$imageOg = $siteURL . (substr($imageOg, 0, 1) !== '/' ? '/' : '') . $imageOg;
+				$imageOg = substr(JUri::root(), 0, -1) . (substr($imageOg, 0, 1) !== '/' ? '/' : '') . $imageOg;
 			}
 		}
 
@@ -409,7 +409,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
 			if (strpos($imageURL, 'http') !== 0)
 			{
-				$imageURL = $siteURL . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
+				$imageURL = substr(JUri::root(), 0, -1) . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
 			}
 
 			$document->setMetaData('og:image', $imageURL, 'property');
