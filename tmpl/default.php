@@ -15,7 +15,7 @@ JHtml::_('stylesheet', 'joomlarrssb/rrssb.css', [], true);
 JHtml::_('stylesheet', 'joomlarrssb/joomla.css', [], true);
 
 // If the article has an image use it otherwise default is hardcoded to the card image used for Twitter
-$pinterestImage = !empty($imageOg) ? $siteURL . $imageOg : 'https://cdn.joomla.org/images/joomla-org-og.jpg';
+$pinterestImage = !empty($imageOg) ? $imageOg : 'https://cdn.joomla.org/images/joomla-org-og.jpg';
 ?>
 
 <div class="share-container">

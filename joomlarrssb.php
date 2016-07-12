@@ -229,6 +229,16 @@ class PlgContentJoomlarrssb extends JPlugin
 			}
 		}
 
+		// Make sure the image has an absolute URL
+		if (!empty($imageOg))
+		{
+			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
+			if (strpos($imageOg, 'http') !== 0)
+			{
+				$imageOg = $siteURL . (substr($imageOg, 0, 1) !== '/' ? '/' : '') . $imageOg;
+			}
+		}
+
 		/*
 		 * Add template metadata per the context
 		 */
@@ -238,8 +248,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		{
 			if (!empty($imageOg))
 			{
-				$document->setMetaData('og:image', $siteURL . '/' . $imageOg, 'property');
-				$document->setMetaData('twitter:image', $siteURL . '/' . $imageOg);
+				$document->setMetaData('og:image', $imageOg, 'property');
+				$document->setMetaData('twitter:image', $imageOg);
 			}
 
 			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
@@ -385,8 +395,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		$category = JTable::getInstance('Category');
 		$category->load($this->app->input->getUint('id'));
 
-		// Build the URL for the plugins to use
-		$siteURL = substr(JUri::root(), 0, -1);
+		// Build the URL for the plugins to use - the site URL should only be the scheme and host segments, JRoute will take care of the rest
+		$siteURL = JUri::getInstance()->toString(['scheme', 'host', 'port']);
 		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getCategoryRoute($category->id));
 
 		// Check if there is a category image to use for the metadata
@@ -399,7 +409,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
 			if (strpos($imageURL, 'http') !== 0)
 			{
-				$imageURL = $siteURL . '/' . $imageURL;
+				$imageURL = $siteURL . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
 			}
 
 			$document->setMetaData('og:image', $imageURL, 'property');
