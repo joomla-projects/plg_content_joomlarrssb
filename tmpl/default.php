@@ -14,6 +14,12 @@ JHtml::_('script', 'joomlarrssb/rrssb.min.js', false, true);
 JHtml::_('stylesheet', 'joomlarrssb/rrssb.css', [], true);
 JHtml::_('stylesheet', 'joomlarrssb/joomla.css', [], true);
 
+// Optional RTL support
+if (JFactory::getDocument()->getDirection() == 'rtl')
+{
+	JHtml::_('stylesheet', 'joomlarrssb/joomla-rtl.css', [], true);
+}
+
 // If the article has an image use it otherwise default is hardcoded to the card image used for Twitter
 $pinterestImage = !empty($imageOg) ? $imageOg : 'https://cdn.joomla.org/images/joomla-org-og.jpg';
 ?>
