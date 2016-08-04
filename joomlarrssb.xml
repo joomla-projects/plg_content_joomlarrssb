@@ -6,7 +6,7 @@
 	<copyright>(C) 2015 Open Source Matters. All rights reserved.</copyright>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>https://www.joomla.org</authorUrl>
-	<version>1.1.0-dev</version>
+	<version>2.0.0-dev</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_CONTENT_JOOMLARRSSB_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
@@ -79,4 +79,7 @@
 		<folder>tmpl</folder>
 		<filename plugin="joomlarrssb">joomlarrssb.php</filename>
 	</files>
+	<updateservers>
+		<server type="extension" name="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://raw.githubusercontent.com/joomla-projects/plg_content_joomlarrssb/master/manifest.xml</server>
+	</updateservers>
 </extension>
