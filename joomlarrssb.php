@@ -78,6 +78,12 @@ class PlgContentJoomlarrssb extends JPlugin
 			return;
 		}
 
+		// Additional context check; we only want this for the component!
+		if (strpos($this->app->scope, 'mod_') === 0)
+		{
+			return;
+		}
+
 		// Check if the plugin is enabled
 		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
 		{
