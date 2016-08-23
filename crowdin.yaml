@@ -5,7 +5,9 @@ base_path: ./language
 files:
   -
     source: /en-GB/en-GB.plg_content_joomlarrssb.ini
+    dest: plg_content_joomlarrssb/en-GB.plg_content_joomlarrssb.ini
     translation: /%locale%/%locale%.plg_content_joomlarrssb.ini
   -
     source: /en-GB/en-GB.plg_content_joomlarrssb.sys.ini
+    dest: plg_content_joomlarrssb/en-GB.plg_content_joomlarrssb.sys.ini
     translation: /%locale%/%locale%.plg_content_joomlarrssb.sys.ini
