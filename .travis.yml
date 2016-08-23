@@ -10,5 +10,5 @@ matrix:
   - php: 7.0
     env: UPDATE_CROWDIN="yes"
 
-after_success:
+script:
 - if [ "$UPDATE_CROWDIN" == "yes" ]; then ./build/travis-lang-update.sh; fi
