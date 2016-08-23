@@ -1,5 +1,4 @@
 #!/bin/sh
-cd ..
 rm -rf packaging && rm joomlarrssb.zip && mkdir packaging
 cp -r language/ packaging/language/
 cp -r media/ packaging/media/
