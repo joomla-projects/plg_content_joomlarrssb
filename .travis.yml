@@ -10,5 +10,5 @@ matrix:
   - php: 7.0
     env: UPDATE_CROWDIN="yes"
 
-after_success:
+script:
   - if [[ $UPDATE_CROWDIN == "yes" && $TRAVIS_PULL_REQUEST == "false" && $TRAVIS_BRANCH == "master" ]]; then vendor/bin/crowdin --upload; fi
