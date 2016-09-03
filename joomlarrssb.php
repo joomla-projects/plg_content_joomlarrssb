@@ -254,22 +254,22 @@ class PlgContentJoomlarrssb extends JPlugin
 		{
 			if (!empty($imageOg))
 			{
-				$document->setMetaData('og:image', $imageOg, 'property');
-				$document->setMetaData('twitter:image', $imageOg);
+				if (!$document->getMetaData('og:image')) {$document->setMetaData('og:image', $imageOg, 'property');}
+				if (!$document->getMetaData('twitter:image')) {$document->setMetaData('twitter:image', $imageOg);}
 			}
 
 			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
 			$description = JHtml::_('string.truncate', $description, 200, true, false);
 
 			// OpenGraph metadata
-			$document->setMetaData('og:description', $description, 'property');
-			$document->setMetaData('og:title', $article->title, 'property');
-			$document->setMetaData('og:type', 'article', 'property');
-			$document->setMetaData('og:url', $itemURL, 'property');
+			if (!$document->getMetaData('og:description')) { $document->setMetaData('og:description', $description, 'property');}
+			if (!$document->getMetaData('og:title')) {$document->setMetaData('og:title', $article->title, 'property');}
+			if (!$document->getMetaData('og:type')) {$document->setMetaData('og:type', 'article', 'property');}
+			if (!$document->getMetaData('og:url')) {$document->setMetaData('og:url', $itemURL, 'property');}
 
 			// Twitter Card metadata
-			$document->setMetaData('twitter:description', $description);
-			$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));
+			if (!$document->getMetaData('twitter:description')) { $document->setMetaData('twitter:description', $description);}
+			if (!$document->getMetaData('twitter:title')) {$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));}
 		}
 
 		// Check that we're actually displaying a button
@@ -418,25 +418,25 @@ class PlgContentJoomlarrssb extends JPlugin
 				$imageURL = substr(JUri::root(), 0, -1) . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
 			}
 
-			$document->setMetaData('og:image', $imageURL, 'property');
-			$document->setMetaData('twitter:image', $imageURL);
+			if (!$document->getMetaData('og:image')) {$document->setMetaData('og:image', $imageURL, 'property');}
+			if (!$document->getMetaData('twitter:image')) {$document->setMetaData('twitter:image', $imageURL);}
 		}
 
 		$description = !empty($category->metadesc) ? $category->metadesc : strip_tags($category->description);
 
 		// OpenGraph metadata
-		$document->setMetaData('og:title', $category->title, 'property');
-		$document->setMetaData('og:type', 'article', 'property');
-		$document->setMetaData('og:url', $itemURL, 'property');
+		if (!$document->getMetaData('og:title')) {$document->setMetaData('og:title', $category->title, 'property');}
+		if (!$document->getMetaData('og:type')) {$document->setMetaData('og:type', 'article', 'property');}
+		if (!$document->getMetaData('og:url')) {$document->setMetaData('og:url', $itemURL, 'property');}
 
 		// Twitter Card metadata
-		$document->setMetaData('twitter:title', JHtml::_('string.truncate', $category->title, 70, true, false));
+		if (!$document->getMetaData('twitter:title')) {$document->setMetaData('twitter:title', JHtml::_('string.truncate', $category->title, 70, true, false));}
 
 		// Add the description too if it isn't empty
 		if (!empty($category->description))
 		{
-			$document->setMetaData('og:description', $description, 'property');
-			$document->setMetaData('twitter:description', $description);
+			if (!$document->getMetaData('og:description')) {$document->setMetaData('og:description', $description, 'property');}
+			if (!$document->getMetaData('twitter:description')) {$document->setMetaData('twitter:description', $description);}
 		}
 
 		// We're done here
