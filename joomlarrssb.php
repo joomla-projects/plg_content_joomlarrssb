@@ -70,7 +70,6 @@ class PlgContentJoomlarrssb extends JPlugin
 		/*
 		 * Validate the plugin should run in the current context
 		 */
-		$document = JFactory::getDocument();
 
 		// Context check - This only works for com_content
 		if (strpos($context, 'com_content') === false)
@@ -91,6 +90,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Make sure the document is an HTML document
+		$document = $this->app->getDocument();
+
 		if ($document->getType() != 'html')
 		{
 			return;
@@ -254,22 +255,51 @@ class PlgContentJoomlarrssb extends JPlugin
 		{
 			if (!empty($imageOg))
 			{
-				if (!$document->getMetaData('og:image')) {$document->setMetaData('og:image', $imageOg, 'property');}
-				if (!$document->getMetaData('twitter:image')) {$document->setMetaData('twitter:image', $imageOg);}
+				if (!$document->getMetaData('og:image'))
+				{
+					$document->setMetaData('og:image', $imageOg, 'property');
+				}
+
+				if (!$document->getMetaData('twitter:image'))
+				{
+					$document->setMetaData('twitter:image', $imageOg);
+				}
 			}
 
 			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
 			$description = JHtml::_('string.truncate', $description, 200, true, false);
 
 			// OpenGraph metadata
-			if (!$document->getMetaData('og:description')) { $document->setMetaData('og:description', $description, 'property');}
-			if (!$document->getMetaData('og:title')) {$document->setMetaData('og:title', $article->title, 'property');}
-			if (!$document->getMetaData('og:type')) {$document->setMetaData('og:type', 'article', 'property');}
-			if (!$document->getMetaData('og:url')) {$document->setMetaData('og:url', $itemURL, 'property');}
+			if (!$document->getMetaData('og:description'))
+			{
+				$document->setMetaData('og:description', $description, 'property');
+			}
+
+			if (!$document->getMetaData('og:title'))
+			{
+				$document->setMetaData('og:title', $article->title, 'property');
+			}
+
+			if (!$document->getMetaData('og:type'))
+			{
+				$document->setMetaData('og:type', 'article', 'property');
+			}
+
+			if (!$document->getMetaData('og:url'))
+			{
+				$document->setMetaData('og:url', $itemURL, 'property');
+			}
 
 			// Twitter Card metadata
-			if (!$document->getMetaData('twitter:description')) { $document->setMetaData('twitter:description', $description);}
-			if (!$document->getMetaData('twitter:title')) {$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));}
+			if (!$document->getMetaData('twitter:description'))
+			{
+				$document->setMetaData('twitter:description', $description);
+			}
+
+			if (!$document->getMetaData('twitter:title'))
+			{
+				$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));
+			}
 		}
 
 		// Check that we're actually displaying a button
@@ -341,7 +371,6 @@ class PlgContentJoomlarrssb extends JPlugin
 		/*
 		 * Validate the plugin should run in the current context
 		 */
-		$document = JFactory::getDocument();
 
 		// Has the plugin already triggered?
 		if (self::$hasProcessedCategory)
@@ -366,6 +395,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Make sure the document is an HTML document
+		$document = $this->app->getDocument();
+
 		if ($document->getType() != 'html')
 		{
 			self::$hasProcessedCategory = true;
@@ -418,25 +449,53 @@ class PlgContentJoomlarrssb extends JPlugin
 				$imageURL = substr(JUri::root(), 0, -1) . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
 			}
 
-			if (!$document->getMetaData('og:image')) {$document->setMetaData('og:image', $imageURL, 'property');}
-			if (!$document->getMetaData('twitter:image')) {$document->setMetaData('twitter:image', $imageURL);}
+			if (!$document->getMetaData('og:image'))
+			{
+				$document->setMetaData('og:image', $imageURL, 'property');
+			}
+
+			if (!$document->getMetaData('twitter:image'))
+			{
+				$document->setMetaData('twitter:image', $imageURL);
+			}
 		}
 
 		$description = !empty($category->metadesc) ? $category->metadesc : strip_tags($category->description);
 
 		// OpenGraph metadata
-		if (!$document->getMetaData('og:title')) {$document->setMetaData('og:title', $category->title, 'property');}
-		if (!$document->getMetaData('og:type')) {$document->setMetaData('og:type', 'article', 'property');}
-		if (!$document->getMetaData('og:url')) {$document->setMetaData('og:url', $itemURL, 'property');}
+		if (!$document->getMetaData('og:title'))
+		{
+			$document->setMetaData('og:title', $category->title, 'property');
+		}
+
+		if (!$document->getMetaData('og:type'))
+		{
+			$document->setMetaData('og:type', 'article', 'property');
+		}
+
+		if (!$document->getMetaData('og:url'))
+		{
+			$document->setMetaData('og:url', $itemURL, 'property');
+		}
 
 		// Twitter Card metadata
-		if (!$document->getMetaData('twitter:title')) {$document->setMetaData('twitter:title', JHtml::_('string.truncate', $category->title, 70, true, false));}
+		if (!$document->getMetaData('twitter:title'))
+		{
+			$document->setMetaData('twitter:title', JHtml::_('string.truncate', $category->title, 70, true, false));
+		}
 
 		// Add the description too if it isn't empty
 		if (!empty($category->description))
 		{
-			if (!$document->getMetaData('og:description')) {$document->setMetaData('og:description', $description, 'property');}
-			if (!$document->getMetaData('twitter:description')) {$document->setMetaData('twitter:description', $description);}
+			if (!$document->getMetaData('og:description'))
+			{
+				$document->setMetaData('og:description', $description, 'property');
+			}
+
+			if (!$document->getMetaData('twitter:description'))
+			{
+				$document->setMetaData('twitter:description', $description);
+			}
 		}
 
 		// We're done here
