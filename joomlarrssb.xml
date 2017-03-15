@@ -68,7 +68,7 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="YOURLSUrl" type="text" size="30" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_URL_DESCRIPTION" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_URL_LABEL" default="http://joom.la" />
+				<field name="YOURLSUrl" type="text" size="30" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_URL_DESCRIPTION" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_URL_LABEL" default="https://joom.la" />
 				<field name="YOURLSAPIKey" type="text" size="30" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_API_KEY_DESCRIPTION" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_SHORTENER_API_KEY_LABEL" default="2909bc72e7" />
 			</fieldset>
 		</fields>

@@ -320,7 +320,7 @@ class PlgContentJoomlarrssb extends JPlugin
 
 			try
 			{
-				$response = JHttpFactory::getHttp()->post($this->params->def('YOURLSUrl', 'http://joom.la') . '/yourls-api.php', $data);
+				$response = JHttpFactory::getHttp()->post($this->params->def('YOURLSUrl', 'https://joom.la') . '/yourls-api.php', $data);
 
 				if ($response->code == 200)
 				{
