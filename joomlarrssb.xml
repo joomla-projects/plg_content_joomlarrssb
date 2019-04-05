@@ -25,10 +25,6 @@
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>
 				</field>
-				<field name="displayGoogle" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_GOOGLE_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_GOOGLE_DESCRIPTION">
-					<option value="0">JNO</option>
-					<option value="1">JYES</option>
-				</field>
 				<field name="displayLinkedin" type="radio" class="btn-group btn-group-yesno" default="1" label="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_LINKEDIN_LABEL" description="PLG_CONTENT_JOOMLARRSSB_FIELDSET_DISPLAY_LINKEDIN_DESCRIPTION">
 					<option value="0">JNO</option>
 					<option value="1">JYES</option>

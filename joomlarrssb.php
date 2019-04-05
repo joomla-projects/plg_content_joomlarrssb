@@ -104,7 +104,6 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Set the parameters
 		$displayEmail       = $this->params->get('displayEmail', '1');
 		$displayFacebook    = $this->params->get('displayFacebook', '1');
-		$displayGoogle      = $this->params->get('displayGoogle', '1');
 		$displayLinkedin    = $this->params->get('displayLinkedin', '1');
 		$displayPinterest   = $this->params->get('displayPinterest', '1');
 		$displayTwitter     = $this->params->get('displayTwitter', '1');
@@ -303,7 +302,7 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Check that we're actually displaying a button
-		if ($displayEmail == '0' && $displayFacebook == '0' && $displayGoogle == '0' && $displayLinkedin == '0' && $displayPinterest == '0' && $displayTwitter == '0')
+		if ($displayEmail == '0' && $displayFacebook == '0' && $displayLinkedin == '0' && $displayPinterest == '0' && $displayTwitter == '0')
 		{
 			return;
 		}
