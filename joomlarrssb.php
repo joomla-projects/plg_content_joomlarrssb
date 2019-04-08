@@ -2,7 +2,7 @@
 /**
  * Ridiculously Responsive Social Sharing Buttons for joomla.org
  *
- * @copyright  Copyright (C) 2015 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2015 - 2019 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
