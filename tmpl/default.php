@@ -8,16 +8,20 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\HTML\HTMLHelper;
+
+/** @var PlgContentJoomlarrssb $this */
+
 // Import media
-JHtml::_('jquery.framework');
-JHtml::_('script', 'joomlarrssb/rrssb.min.js', false, true);
-JHtml::_('stylesheet', 'joomlarrssb/rrssb.css', [], true);
-JHtml::_('stylesheet', 'joomlarrssb/joomla.css', [], true);
+HTMLHelper::_('jquery.framework');
+HTMLHelper::_('script', 'joomlarrssb/rrssb.min.js', false, true);
+HTMLHelper::_('stylesheet', 'joomlarrssb/rrssb.css', [], true);
+HTMLHelper::_('stylesheet', 'joomlarrssb/joomla.css', [], true);
 
 // Optional RTL support
-if (JFactory::getDocument()->getDirection() == 'rtl')
+if ($this->app->getDocument()->getDirection() == 'rtl')
 {
-	JHtml::_('stylesheet', 'joomlarrssb/joomla-rtl.css', [], true);
+	HTMLHelper::_('stylesheet', 'joomlarrssb/joomla-rtl.css', [], true);
 }
 
 // If the article has an image use it otherwise default is hardcoded to the card image used for Twitter

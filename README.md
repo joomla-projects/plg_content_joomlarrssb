@@ -4,7 +4,7 @@ This is a Joomla! plugin which adds social sharing buttons and metadata optimize
 
 ## Requirements
 
-* Joomla! 3.6 or newer
+* Joomla! 3.9 or newer
 * PHP 5.4 or newer
 
 ## Support

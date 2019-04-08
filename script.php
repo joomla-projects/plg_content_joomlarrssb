@@ -6,12 +6,14 @@
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
+use Joomla\CMS\Installer\InstallerScript;
+
 /**
  * Installation class to perform additional changes during install/uninstall/update
  *
  * @since  2.0
  */
-class PlgContentJoomlarrssbScript extends JInstallerScript
+class PlgContentJoomlarrssbScript extends InstallerScript
 {
 	/**
 	 * Extension script constructor.
@@ -20,7 +22,7 @@ class PlgContentJoomlarrssbScript extends JInstallerScript
 	 */
 	public function __construct()
 	{
-		$this->minimumJoomla = '3.6';
+		$this->minimumJoomla = '3.9';
 		$this->minimumPhp    = '5.4';
 	}
 }

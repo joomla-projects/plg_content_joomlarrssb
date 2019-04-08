@@ -8,6 +8,16 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Application\CMSApplication;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Http\HttpFactory;
+use Joomla\CMS\Plugin\CMSPlugin;
+use Joomla\CMS\Plugin\PluginHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Table\Category;
+use Joomla\CMS\Table\Table;
+use Joomla\CMS\Uri\Uri;
+
 // We require com_content's route helper
 JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
 
@@ -16,12 +26,12 @@ JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/he
  *
  * @since  1.0
  */
-class PlgContentJoomlarrssb extends JPlugin
+class PlgContentJoomlarrssb extends CMSPlugin
 {
 	/**
 	 * Application object
 	 *
-	 * @var    JApplicationCms
+	 * @var    CMSApplication
 	 * @since  1.0
 	 */
 	protected $app;
@@ -84,7 +94,7 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Check if the plugin is enabled
-		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
+		if (PluginHelper::isEnabled('content', 'joomlarrssb') == false)
 		{
 			return;
 		}
@@ -181,8 +191,8 @@ class PlgContentJoomlarrssb extends JPlugin
 		$article->slug = $article->alias ? ($article->id . ':' . $article->alias) : $article->id;
 
 		// Build the URL for the plugins to use - the site URL should only be the scheme and host segments, JRoute will take care of the rest
-		$siteURL = JUri::getInstance()->toString(['scheme', 'host', 'port']);
-		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
+		$siteURL = Uri::getInstance()->toString(['scheme', 'host', 'port']);
+		$itemURL = $siteURL . Route::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
 
 		// Check if we have an intro text image (Priority: fulltext image, intro image, content image, category image)
 		$images = json_decode($article->images);
@@ -241,7 +251,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
 			if (strpos($imageOg, 'http') !== 0)
 			{
-				$imageOg = substr(JUri::root(), 0, -1) . (substr($imageOg, 0, 1) !== '/' ? '/' : '') . $imageOg;
+				$imageOg = substr(Uri::root(), 0, -1) . (substr($imageOg, 0, 1) !== '/' ? '/' : '') . $imageOg;
 			}
 		}
 
@@ -266,7 +276,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			}
 
 			$description = !empty($article->metadesc) ? $article->metadesc : $article->introtext;
-			$description = JHtml::_('string.truncate', $description, 200, true, false);
+			$description = HTMLHelper::_('string.truncate', $description, 200, true, false);
 
 			// OpenGraph metadata
 			if (!$document->getMetaData('og:description'))
@@ -297,7 +307,7 @@ class PlgContentJoomlarrssb extends JPlugin
 
 			if (!$document->getMetaData('twitter:title'))
 			{
-				$document->setMetaData('twitter:title', JHtml::_('string.truncate', $article->title, 70, true, false));
+				$document->setMetaData('twitter:title', HTMLHelper::_('string.truncate', $article->title, 70, true, false));
 			}
 		}
 
@@ -319,7 +329,7 @@ class PlgContentJoomlarrssb extends JPlugin
 
 			try
 			{
-				$response = JHttpFactory::getHttp()->post($this->params->def('YOURLSUrl', 'https://joom.la') . '/yourls-api.php', $data);
+				$response = HttpFactory::getHttp()->post($this->params->def('YOURLSUrl', 'https://joom.la') . '/yourls-api.php', $data);
 
 				if ($response->code == 200)
 				{
@@ -334,7 +344,7 @@ class PlgContentJoomlarrssb extends JPlugin
 
 		// Load the layout
 		ob_start();
-		$template = JPluginHelper::getLayoutPath('content', 'joomlarrssb');
+		$template = PluginHelper::getLayoutPath('content', 'joomlarrssb');
 		include $template;
 		$output = ob_get_clean();
 
@@ -386,7 +396,7 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Check if the plugin is enabled
-		if (JPluginHelper::isEnabled('content', 'joomlarrssb') == false)
+		if (PluginHelper::isEnabled('content', 'joomlarrssb') == false)
 		{
 			self::$hasProcessedCategory = true;
 
@@ -427,13 +437,13 @@ class PlgContentJoomlarrssb extends JPlugin
 		}
 
 		// Get the requested category
-		/** @var JTableCategory $category */
-		$category = JTable::getInstance('Category');
+		/** @var Category $category */
+		$category = Table::getInstance('Category');
 		$category->load($this->app->input->getUint('id'));
 
 		// Build the URL for the plugins to use - the site URL should only be the scheme and host segments, JRoute will take care of the rest
-		$siteURL = JUri::getInstance()->toString(['scheme', 'host', 'port']);
-		$itemURL = $siteURL . JRoute::_(ContentHelperRoute::getCategoryRoute($category->id));
+		$siteURL = Uri::getInstance()->toString(['scheme', 'host', 'port']);
+		$itemURL = $siteURL . Route::_(ContentHelperRoute::getCategoryRoute($category->id));
 
 		// Check if there is a category image to use for the metadata
 		$categoryParams = json_decode($category->params, true);
@@ -445,7 +455,7 @@ class PlgContentJoomlarrssb extends JPlugin
 			// If the image isn't prefixed with http then assume it's relative and put the site URL in front
 			if (strpos($imageURL, 'http') !== 0)
 			{
-				$imageURL = substr(JUri::root(), 0, -1) . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
+				$imageURL = substr(Uri::root(), 0, -1) . (substr($imageURL, 0, 1) !== '/' ? '/' : '') . $imageURL;
 			}
 
 			if (!$document->getMetaData('og:image'))
@@ -480,7 +490,7 @@ class PlgContentJoomlarrssb extends JPlugin
 		// Twitter Card metadata
 		if (!$document->getMetaData('twitter:title'))
 		{
-			$document->setMetaData('twitter:title', JHtml::_('string.truncate', $category->title, 70, true, false));
+			$document->setMetaData('twitter:title', HTMLHelper::_('string.truncate', $category->title, 70, true, false));
 		}
 
 		// Add the description too if it isn't empty
