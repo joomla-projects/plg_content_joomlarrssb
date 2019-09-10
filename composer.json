@@ -4,7 +4,7 @@
     "description": "Social sharing plugin for the joomla.org websites using Ridiculously Responsive Social Sharing Buttons",
     "keywords": ["joomla", "cms", "plugin"],
     "homepage": "https://github.com/joomla-projects/plg_content_joomlarrssb",
-    "license": "GPL-2.0+",
+    "license": "GPL-2.0-or-later",
     "require": {
         "php": "~5.4|~7.0"
     },
