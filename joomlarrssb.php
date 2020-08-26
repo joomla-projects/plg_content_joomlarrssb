@@ -267,6 +267,10 @@ class PlgContentJoomlarrssb extends CMSPlugin
 				if (!$document->getMetaData('og:image'))
 				{
 					$document->setMetaData('og:image', $imageOg, 'property');
+
+					$imageInfo = getimagesize($imageOg);
+					$document->setMetaData('og:image:width', $imageInfo[0], 'property');
+					$document->setMetaData('og:image:height', $imageInfo[1], 'property');
 				}
 
 				if (!$document->getMetaData('twitter:image'))
