@@ -12,7 +12,7 @@
 		<downloads>
 			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.0/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>450d988271c367920eb9423219dd442fda56fc7f03e465369222a9d4dababd89a81ef5b8a08db6629788dae45bafb504b916e647368a1d9b88102ba71f2173fa</sha512>
+		<sha512>7c8f773c53aaaafe27812400a6ed8be7b59e234c20c6df1794225fd26c6b3834a82670eb434d2cca67c31986e62900694441ef4b1e14c35bab0323c3a556dff4</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
