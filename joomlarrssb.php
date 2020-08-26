@@ -321,7 +321,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 		$agent = $this->app->input->server->get('HTTP_USER_AGENT', '', 'cmd');
 
 		// Apply our shortened URL if configured only when whe are not offline and when it is not YOURLS itself
-		if ($shorten && (stristr($agent, 'YOURLS') === false) && $this->app->get('offline') === 0)
+		if ($shorten && (stristr($agent, 'YOURLS') === false) && !$this->app->get('offline'))
 		{
 			$data = [
 				'signature' => $this->params->get('YOURLSAPIKey'),
