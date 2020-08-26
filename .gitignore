@@ -1,12 +1,1 @@
-# IDE & System Related Files #
-.buildpath
-.project
-.settings
-.DS_Store
-.idea
-
-# Ignore files/folders related to packaging
 /build/plg_content_joomlarrssb.zip
-
-# Composer Install #
-/vendor
