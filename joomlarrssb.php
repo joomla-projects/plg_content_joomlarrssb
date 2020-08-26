@@ -120,7 +120,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 		$selectedCategories = $this->params->def('displayCategories', '');
 		$position           = $this->params->def('displayPosition', 'top');
 		$view               = $this->app->input->getCmd('view', '');
-		$shorten            = $this->params->def('useYOURLS', true);
+		$shorten            = $this->params->get('useYOURLS', true);
 
 		// Check whether we're displaying the plugin in the current view
 		if ($this->params->get('view' . ucfirst($view), '1') == '0')
