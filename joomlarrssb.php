@@ -318,7 +318,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 		}
 
 		// Prevent recursion when crawled by YOURLs
-		$agent = @$_SERVER['HTTP_USER_AGENT'];
+		$agent = $this->app->input->server->get('HTTP_USER_AGENT', '', 'cmd')
 
 		// Apply our shortened URL if configured
 		if ($shorten && (stristr($agent, 'YOURLS') === false))
