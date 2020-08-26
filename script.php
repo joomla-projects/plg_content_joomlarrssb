@@ -23,6 +23,6 @@ class PlgContentJoomlarrssbScript extends InstallerScript
 	public function __construct()
 	{
 		$this->minimumJoomla = '3.9';
-		$this->minimumPhp    = '5.4';
+		$this->minimumPhp    = '7.2.5';
 	}
 }
