@@ -6,8 +6,7 @@
 .idea
 
 # Ignore files/folders related to packaging
-/packaging
-/joomlarrssb.zip
+/build/plg_content_joomlarrssb.zip
 
 # Composer Install #
 /vendor
