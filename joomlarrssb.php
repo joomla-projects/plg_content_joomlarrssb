@@ -320,11 +320,11 @@ class PlgContentJoomlarrssb extends CMSPlugin
 		// Prevent recursion when crawled by YOURLs
 		$agent = $this->app->input->server->get('HTTP_USER_AGENT', '', 'cmd');
 
-		// Apply our shortened URL if configured
-		if ($shorten && (stristr($agent, 'YOURLS') === false))
+		// Apply our shortened URL if configured only when whe are not offline and when it is not YOURLS itself
+		if ($shorten && (stristr($agent, 'YOURLS') === false) && $this->app->get('offline') === 0)
 		{
-			$data     = [
-				'signature' => $this->params->def('YOURLSAPIKey', '2909bc72e7'),
+			$data = [
+				'signature' => $this->params->get('YOURLSAPIKey'),
 				'action'    => 'shorturl',
 				'url'       => $itemURL,
 				'format'    => 'simple'
@@ -332,7 +332,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 
 			try
 			{
-				$response = HttpFactory::getHttp()->post($this->params->def('YOURLSUrl', 'https://joom.la') . '/yourls-api.php', $data);
+				$response = HttpFactory::getHttp()->post($this->params->get('YOURLSUrl', 'https://joom.la') . '/yourls-api.php', $data);
 
 				if ($response->code == 200)
 				{
@@ -341,7 +341,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			}
 			catch (Exception $e)
 			{
-				// In case of an error connecting out here, we can still use the 'real' URL.  Carry on.
+				// In case of an error connecting out here, we can still use the 'real' URL. Carry on.
 			}
 		}
 
