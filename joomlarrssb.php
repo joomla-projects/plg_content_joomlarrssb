@@ -267,6 +267,11 @@ class PlgContentJoomlarrssb extends CMSPlugin
 				if (!$document->getMetaData('og:image'))
 				{
 					$document->setMetaData('og:image', $imageOg, 'property');
+
+					$imageInfo = getimagesize($imageOg);
+					$document->setMetaData('og:image:width', $imageInfo[0], 'property');
+					$document->setMetaData('og:image:height', $imageInfo[1], 'property');
+					$document->setMetaData('og:image:type', $imageInfo['mime'], 'property');
 				}
 
 				if (!$document->getMetaData('twitter:image'))
@@ -464,6 +469,11 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			if (!$document->getMetaData('og:image'))
 			{
 				$document->setMetaData('og:image', $imageURL, 'property');
+
+				$imageInfo = getimagesize($imageURL);
+				$document->setMetaData('og:image:width', $imageInfo[0], 'property');
+				$document->setMetaData('og:image:height', $imageInfo[1], 'property');
+				$document->setMetaData('og:image:type', $imageInfo['mime'], 'property');
 			}
 
 			if (!$document->getMetaData('twitter:image'))
