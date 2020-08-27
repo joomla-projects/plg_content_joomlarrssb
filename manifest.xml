@@ -7,12 +7,12 @@
 		<type>plugin</type>
 		<client>site</client>
 		<folder>content</folder>
-		<version>3.0.0</version>
-		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.0</infourl>
+		<version>3.0.1</version>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.1</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.0/plg_content_joomlarrssb.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.1/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>266814d32d72cfe2f75d6d5a4149001d583a03f51b2ea6e7ddc49c3e5d588d99ae649a7e2d911c355827198fce6d3531bc1f341d4c1da8efe279a26f5e024e03</sha512>
+		<sha512>d0d5b72bd9612f52f86cbfedbf7868af433328b015274a89ee557305c94d36360cfbd471a872fe79c8351c5c22ac0a3b8ec45abb6b6fb9081d8d4fa2e0c9efd8</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>

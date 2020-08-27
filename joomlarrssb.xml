@@ -6,7 +6,7 @@
 	<copyright>(C) 2015 - 2020 Open Source Matters. All rights reserved.</copyright>
 	<authorEmail>admin@joomla.org</authorEmail>
 	<authorUrl>https://www.joomla.org</authorUrl>
-	<version>3.0.0</version>
+	<version>3.0.1</version>
 	<license>GNU/GPL Version 2 or later</license>
 	<description>PLG_CONTENT_JOOMLARRSSB_XML_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
