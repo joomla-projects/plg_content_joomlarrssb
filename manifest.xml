@@ -7,16 +7,35 @@
 		<type>plugin</type>
 		<client>site</client>
 		<folder>content</folder>
-		<version>3.0.1</version>
-		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.1</infourl>
+		<version>3.0.2</version>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.2</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.1/plg_content_joomlarrssb.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.2/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>d0d5b72bd9612f52f86cbfedbf7868af433328b015274a89ee557305c94d36360cfbd471a872fe79c8351c5c22ac0a3b8ec45abb6b6fb9081d8d4fa2e0c9efd8</sha512>
+		<sha512>ca88dcf04e71a32f08a102f7a8794e03f2632551c2454ba3a70a819e06ff244c07aff691a732ebed85983c6abf7f76ffab29f79b578c9dab5f1222d3d79e4581</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
 		<targetplatform name="joomla" version="3.(9|10)" />
+		<php_minimum>7.2.5</php_minimum>
+	</update>
+	<update>
+		<name>Ridiculously Responsive Social Sharing Buttons for joomla.org</name>
+		<description>This plugin adds Ridiculously Responsive Social Sharing Buttons to the joomla.org websites for social sharing</description>
+		<element>joomlarrssb</element>
+		<type>plugin</type>
+		<client>site</client>
+		<folder>content</folder>
+		<version>3.0.2</version>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.2</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.2/plg_content_joomlarrssb.zip</downloadurl>
+		</downloads>
+		<sha512>ca88dcf04e71a32f08a102f7a8794e03f2632551c2454ba3a70a819e06ff244c07aff691a732ebed85983c6abf7f76ffab29f79b578c9dab5f1222d3d79e4581</sha512>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<targetplatform name="joomla" version="4.0" />
 		<php_minimum>7.2.5</php_minimum>
 	</update>
 </updates>
