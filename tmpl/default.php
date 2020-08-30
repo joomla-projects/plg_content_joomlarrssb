@@ -18,7 +18,6 @@ HTMLHelper::_('script', 'joomlarrssb/rrssb.min.js', ['relative' => true]);
 HTMLHelper::_('stylesheet', 'joomlarrssb/rrssb.css', ['relative' => true]);
 HTMLHelper::_('stylesheet', 'joomlarrssb/joomla.css', ['relative' => true]);
 
-
 // Optional RTL support
 if ($this->app->getDocument()->getDirection() == 'rtl')
 {
