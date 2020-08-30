@@ -14,14 +14,14 @@ use Joomla\CMS\HTML\HTMLHelper;
 
 // Import media
 HTMLHelper::_('jquery.framework');
-HTMLHelper::_('script', 'joomlarrssb/rrssb.min.js', ['relative' => true]);
-HTMLHelper::_('stylesheet', 'joomlarrssb/rrssb.css', ['relative' => true]);
-HTMLHelper::_('stylesheet', 'joomlarrssb/joomla.css', ['relative' => true]);
+HTMLHelper::_('script', 'joomlarrssb/rrssb.min.js', ['version' => 'auto', 'relative' => true]);
+HTMLHelper::_('stylesheet', 'joomlarrssb/rrssb.css', ['version' => 'auto', 'relative' => true]);
+HTMLHelper::_('stylesheet', 'joomlarrssb/joomla.css', ['version' => 'auto', 'relative' => true]);
 
 // Optional RTL support
 if ($this->app->getDocument()->getDirection() == 'rtl')
 {
-	HTMLHelper::_('stylesheet', 'joomlarrssb/joomla-rtl.css', ['relative' => true]);
+	HTMLHelper::_('stylesheet', 'joomlarrssb/joomla-rtl.css', ['version' => 'auto', 'relative' => true]);
 }
 
 // If the article has an image use it otherwise default is hardcoded to the card image used for Twitter
