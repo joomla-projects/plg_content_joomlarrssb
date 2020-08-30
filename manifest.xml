@@ -12,7 +12,7 @@
 		<downloads>
 			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.2/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>ca88dcf04e71a32f08a102f7a8794e03f2632551c2454ba3a70a819e06ff244c07aff691a732ebed85983c6abf7f76ffab29f79b578c9dab5f1222d3d79e4581</sha512>
+		<sha512>37a34d74149916e16b657be4aa5fd51c465229a5db152706b88c0295a8f34530cc33d6b3aaeb0f3f42389879a863972a8ee067bc254f9d4d4aa9659b1c9dda36</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
@@ -31,7 +31,7 @@
 		<downloads>
 			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.2/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>ca88dcf04e71a32f08a102f7a8794e03f2632551c2454ba3a70a819e06ff244c07aff691a732ebed85983c6abf7f76ffab29f79b578c9dab5f1222d3d79e4581</sha512>
+		<sha512>37a34d74149916e16b657be4aa5fd51c465229a5db152706b88c0295a8f34530cc33d6b3aaeb0f3f42389879a863972a8ee067bc254f9d4d4aa9659b1c9dda36</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
