@@ -11,6 +11,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Http\HttpFactory;
+use Joomla\CMS\Image\Image;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Plugin\PluginHelper;
 use Joomla\CMS\Router\Route;
@@ -268,9 +269,9 @@ class PlgContentJoomlarrssb extends CMSPlugin
 				{
 					$document->setMetaData('og:image', $imageOg, 'property');
 
-					$imageInfo = getimagesize($imageOg);
-					$document->setMetaData('og:image:width', $imageInfo[0], 'property');
-					$document->setMetaData('og:image:height', $imageInfo[1], 'property');
+					$imageInfo = Image::getImageFileProperties($imageOg);
+					$document->setMetaData('og:image:width', $imageInfo['width'], 'property');
+					$document->setMetaData('og:image:height', $imageInfo['height'], 'property');
 					$document->setMetaData('og:image:type', $imageInfo['mime'], 'property');
 				}
 
@@ -470,9 +471,9 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			{
 				$document->setMetaData('og:image', $imageURL, 'property');
 
-				$imageInfo = getimagesize($imageURL);
-				$document->setMetaData('og:image:width', $imageInfo[0], 'property');
-				$document->setMetaData('og:image:height', $imageInfo[1], 'property');
+				$imageInfo = Image::getImageFileProperties($imageURL);
+				$document->setMetaData('og:image:width', $imageInfo['width'], 'property');
+				$document->setMetaData('og:image:height', $imageInfo['height'], 'property');
 				$document->setMetaData('og:image:type', $imageInfo['mime'], 'property');
 			}
 
