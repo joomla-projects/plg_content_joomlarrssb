@@ -128,14 +128,6 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			return;
 		}
 
-		// Make sure we have a category ID, otherwise, end processing
-		$properties = get_object_vars($article);
-
-		if (!array_key_exists('catid', $properties))
-		{
-			return;
-		}
-
 		// If we're not in the article view, we have to get the full $article object ourselves
 		if ($view == 'featured' || $view == 'category')
 		{
@@ -145,10 +137,18 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			 */
 			$data = $this->loadArticle($article);
 
-			if (!is_null($data))
+			if ((!is_null($data)) && (!isset($article->catid)))
 			{
 				$article = $data;
 			}
+		}
+
+		// Make sure we have a category ID, otherwise, end processing
+		$properties = get_object_vars($article);
+
+		if (!array_key_exists('catid', $properties))
+		{
+			return;
 		}
 
 		// Get the current category
