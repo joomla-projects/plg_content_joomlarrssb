@@ -269,10 +269,13 @@ class PlgContentJoomlarrssb extends CMSPlugin
 				{
 					$document->setMetaData('og:image', $imageOg, 'property');
 
-					$imageInfo = Image::getImageFileProperties($imageOg);
-					$document->setMetaData('og:image:width', $imageInfo['width'], 'property');
-					$document->setMetaData('og:image:height', $imageInfo['height'], 'property');
-					$document->setMetaData('og:image:type', $imageInfo['mime'], 'property');
+					// The Image libary can not handle remote images.
+					$imageForInfo = str_replace(Uri::root(), '', $imageOg);
+					$imageInfo    = Image::getImageFileProperties($imageForInfo);
+
+					$document->setMetaData('og:image:width', $imageInfo->width, 'property');
+					$document->setMetaData('og:image:height', $imageInfo->height, 'property');
+					$document->setMetaData('og:image:type', $imageInfo->mime, 'property');
 				}
 
 				if (!$document->getMetaData('twitter:image'))
@@ -471,10 +474,13 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			{
 				$document->setMetaData('og:image', $imageURL, 'property');
 
-				$imageInfo = Image::getImageFileProperties($imageURL);
-				$document->setMetaData('og:image:width', $imageInfo['width'], 'property');
-				$document->setMetaData('og:image:height', $imageInfo['height'], 'property');
-				$document->setMetaData('og:image:type', $imageInfo['mime'], 'property');
+				// The Image libary can not handle remote images.
+				$imageForInfo = str_replace(Uri::root(), '', $imageURL);
+				$imageInfo    = Image::getImageFileProperties($imageForInfo);
+
+				$document->setMetaData('og:image:width', $imageInfo->width, 'property');
+				$document->setMetaData('og:image:height', $imageInfo->height, 'property');
+				$document->setMetaData('og:image:type', $imageInfo->mime, 'property');
 			}
 
 			if (!$document->getMetaData('twitter:image'))
