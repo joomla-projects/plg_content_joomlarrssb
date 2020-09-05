@@ -176,6 +176,6 @@
 		</fields>
 	</config>
 	<updateservers>
-		<server type="extension" name="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://raw.githubusercontent.com/joomla-projects/plg_content_joomlarrssb/master/manifest.xml</server>
+		<server type="extension" name="Ridiculously Responsive Social Sharing Buttons for Joomla">https://raw.githubusercontent.com/joomla-projects/plg_content_joomlarrssb/master/manifest.xml</server>
 	</updateservers>
 </extension>
