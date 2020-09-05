@@ -1,6 +1,6 @@
 <?php
 /**
- * Ridiculously Responsive Social Sharing Buttons for joomla.org
+ * Ridiculously Responsive Social Sharing Buttons for Joomla
  *
  * @copyright  Copyright (C) 2015 - 2020 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
@@ -23,7 +23,7 @@ use Joomla\CMS\Uri\Uri;
 JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
 
 /**
- * Ridiculously Responsive Social Sharing Buttons for joomla.org Content Plugin
+ * Ridiculously Responsive Social Sharing Buttons for Joomla Content Plugin
  *
  * @since  1.0
  */
