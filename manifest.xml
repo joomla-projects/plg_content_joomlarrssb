@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <updates>
 	<update>
-		<name>Ridiculously Responsive Social Sharing Buttons for joomla.org</name>
-		<description>This plugin adds Ridiculously Responsive Social Sharing Buttons to the joomla.org websites for social sharing</description>
+		<name>Ridiculously Responsive Social Sharing Buttons for Joomla</name>
+		<description>This plugin adds Ridiculously Responsive Social Sharing Buttons to the Joomla websites for social sharing</description>
 		<element>joomlarrssb</element>
 		<type>plugin</type>
 		<client>site</client>
 		<folder>content</folder>
 		<version>3.0.4</version>
-		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.4</infourl>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for Joomla">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.4</infourl>
 		<downloads>
 			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.4/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
@@ -20,14 +20,14 @@
 		<php_minimum>7.2.5</php_minimum>
 	</update>
 	<update>
-		<name>Ridiculously Responsive Social Sharing Buttons for joomla.org</name>
-		<description>This plugin adds Ridiculously Responsive Social Sharing Buttons to the joomla.org websites for social sharing</description>
+		<name>Ridiculously Responsive Social Sharing Buttons for Joomla</name>
+		<description>This plugin adds Ridiculously Responsive Social Sharing Buttons to the Joomla websites for social sharing</description>
 		<element>joomlarrssb</element>
 		<type>plugin</type>
 		<client>site</client>
 		<folder>content</folder>
 		<version>3.0.4</version>
-		<infourl title="Ridiculously Responsive Social Sharing Buttons for joomla.org">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.4</infourl>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for Joomla">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.4</infourl>
 		<downloads>
 			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.4/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
