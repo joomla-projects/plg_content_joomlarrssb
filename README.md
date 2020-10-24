@@ -24,3 +24,12 @@ To override the JavaScript files, copy the `media/js/*.js` files to `templates/<
 ### Optional RTL CSS
 
 The plugin's default layout supports inclusion of a RTL CSS file if need be (one is not shipped with the plugin by default).  You can add RTL CSS by placing a file at `templates/<template_name>/css/joomlarrssb/joomla-rtl.css`.
+
+### Release steps
+
+- `build/build.sh`
+- `git commit -am 'prepare JoomlaRSSB 3.0.x'`
+- `git tag -s '1.0.x' -m 'JoomlaRSSB 3.0.x'`
+- `git push origin --tags`
+- create the release on GitHub
+- `git push origin master`
