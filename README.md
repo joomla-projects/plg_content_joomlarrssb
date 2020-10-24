@@ -29,7 +29,7 @@ The plugin's default layout supports inclusion of a RTL CSS file if need be (one
 
 - `build/build.sh`
 - `git commit -am 'prepare JoomlaRSSB 3.0.x'`
-- `git tag -s '1.0.x' -m 'JoomlaRSSB 3.0.x'`
+- `git tag -s '3.0.x' -m 'JoomlaRSSB 3.0.x'`
 - `git push origin --tags`
 - create the release on GitHub
 - `git push origin master`
