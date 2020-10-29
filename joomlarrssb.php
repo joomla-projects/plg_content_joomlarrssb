@@ -215,8 +215,13 @@ class PlgContentJoomlarrssb extends CMSPlugin
 			}
 
 			// Always run this preg_match as the results are also used in the layout
-			$pattern = "/<img[^>]*src\=['\"]?(([^>]*)(jpg|gif|JPG|png|jpeg))['\"]?/";
-			preg_match($pattern, $article->text, $matches);
+			preg_match_all('/<img[^>]+>/i', $article->text, $images);
+
+			if (isset($images[0][0]))
+			{
+				// https://paulund.co.uk/get-image-src-with-php
+				preg_match_all('@src="([^"]+)"@', $images[0][0], $matches);
+			}
 
 			$imageOg = isset($matches[1]) ? $matches[1] : '';
 
