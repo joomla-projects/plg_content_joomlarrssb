@@ -7,12 +7,12 @@
 		<type>plugin</type>
 		<client>site</client>
 		<folder>content</folder>
-		<version>3.0.4</version>
-		<infourl title="Ridiculously Responsive Social Sharing Buttons for Joomla">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.4</infourl>
+		<version>3.0.6</version>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for Joomla">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.6</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.4/plg_content_joomlarrssb.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.6/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>affa6db22b64e4d49f8c4bc30e68e0962519c81b5f15bad5581150d1720898e282e530a8bdbb7b9731a6ab98adcf2ed9488c6bcf65b1f224996fa2ecca43d36d</sha512>
+		<sha512>a49f9d28ae2aeceda5869dd321106d200926411584e41795c4ad40fd3be20e56c9c1e4c4e191e4a468c16b099a95d21e8276bce62329d1a139a29b0e8331c68f</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
@@ -26,12 +26,12 @@
 		<type>plugin</type>
 		<client>site</client>
 		<folder>content</folder>
-		<version>3.0.4</version>
-		<infourl title="Ridiculously Responsive Social Sharing Buttons for Joomla">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.4</infourl>
+		<version>3.0.6</version>
+		<infourl title="Ridiculously Responsive Social Sharing Buttons for Joomla">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/tag/3.0.6</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.4/plg_content_joomlarrssb.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/joomla-projects/plg_content_joomlarrssb/releases/download/3.0.6/plg_content_joomlarrssb.zip</downloadurl>
 		</downloads>
-		<sha512>affa6db22b64e4d49f8c4bc30e68e0962519c81b5f15bad5581150d1720898e282e530a8bdbb7b9731a6ab98adcf2ed9488c6bcf65b1f224996fa2ecca43d36d</sha512>
+		<sha512>a49f9d28ae2aeceda5869dd321106d200926411584e41795c4ad40fd3be20e56c9c1e4c4e191e4a468c16b099a95d21e8276bce62329d1a139a29b0e8331c68f</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
