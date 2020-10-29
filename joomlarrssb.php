@@ -223,7 +223,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 				preg_match_all('@src="([^"]+)"@', $images[0][0], $matches);
 			}
 
-			$imageOg = isset($matches[1]) ? $matches[1] : '';
+			$imageOg = isset($matches[1][0]) ? $matches[1][0] : '';
 
 			// Check for category image
 			if (empty($imageOg))
