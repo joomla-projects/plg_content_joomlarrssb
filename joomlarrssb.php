@@ -397,7 +397,7 @@ class PlgContentJoomlarrssb extends CMSPlugin
 	 *
 	 * @since   1.1
 	 */
-	public function onContentPrepare($context, &$article, &$params, $page)
+	public function onContentPrepare($context, &$article, &$params, $page = 0)
 	{
 		/*
 		 * Validate the plugin should run in the current context
