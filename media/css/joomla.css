@@ -30,3 +30,16 @@
         height: 17px
     }
 }
+
+/* Override the twitter colors to use the official color as the background and also use a a11y compliant contrast text color */
+.rrssb-buttons li.rrssb-twitter a {
+	background-color: #1D9BF0;
+}
+
+.rrssb-buttons li.rrssb-twitter a:hover {
+	background-color: #25a3f8;
+}
+
+.rrssb-buttons li.rrssb-twitter a {
+	color: #000333;
+}
