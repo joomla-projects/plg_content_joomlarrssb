@@ -29,6 +29,10 @@
         width: 17px;
         height: 17px
     }
+
+    .rrssb-buttons li.small a .rrssb-icon {
+        overflow: visible;
+    }
 }
 
 /* Override the twitter colors to use the official color as the background and also use a a11y compliant contrast text color */
