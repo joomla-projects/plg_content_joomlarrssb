@@ -2,7 +2,7 @@
 /**
  * Ridiculously Responsive Social Sharing Buttons for Joomla
  *
- * @copyright  Copyright (C) 2015 - 2020 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2015 - 2026 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
@@ -18,9 +18,7 @@ use Joomla\CMS\Router\Route;
 use Joomla\CMS\Table\Category;
 use Joomla\CMS\Table\Table;
 use Joomla\CMS\Uri\Uri;
-
-// We require com_content's route helper
-JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
+use Joomla\Component\Content\Site\Helper\RouteHelper;
 
 /**
  * Ridiculously Responsive Social Sharing Buttons for Joomla Content Plugin
@@ -193,7 +191,14 @@ class PlgContentJoomlarrssb extends CMSPlugin
 
 		// Build the URL for the plugins to use - the site URL should only be the scheme and host segments, JRoute will take care of the rest
 		$siteURL = Uri::getInstance()->toString(['scheme', 'host', 'port']);
-		$itemURL = $siteURL . Route::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
+
+		if (version_compare(JVERSION, '4.0.0', 'ge')) {
+			$itemURL = $siteURL . Route::_(RouteHelper::getArticleRoute($article->slug, $article->catid));
+		} else {
+			// We require Joomla 3 com_content's route helper
+			JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
+			$itemURL = $siteURL . Route::_(ContentHelperRoute::getArticleRoute($article->slug, $article->catid));
+		}
 
 		// Check if we have an intro text image (Priority: fulltext image, intro image, content image, category image)
 		$images = json_decode($article->images);
@@ -465,7 +470,14 @@ class PlgContentJoomlarrssb extends CMSPlugin
 
 		// Build the URL for the plugins to use - the site URL should only be the scheme and host segments, JRoute will take care of the rest
 		$siteURL = Uri::getInstance()->toString(['scheme', 'host', 'port']);
-		$itemURL = $siteURL . Route::_(ContentHelperRoute::getCategoryRoute($category->id));
+
+		if (version_compare(JVERSION, '4.0.0', 'ge')) {
+			$itemURL = $siteURL . Route::_(RouteHelper::getCategoryRoute($category->id));
+		} else {
+			// We require Joomla 3 com_content's route helper
+			JLoader::register('ContentHelperRoute', JPATH_SITE . '/components/com_content/helpers/route.php');
+			$itemURL = $siteURL . Route::_(ContentHelperRoute::getCategoryRoute($category->id));
+		}
 
 		// Check if there is a category image to use for the metadata
 		$categoryParams = json_decode($category->params, true);
