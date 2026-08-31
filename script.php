@@ -2,7 +2,7 @@
 /**
  * Ridiculously Responsive Social Sharing Buttons for Joomla
  *
- * @copyright  Copyright (C) 2015 - 2020 Open Source Matters, Inc. All rights reserved.
+ * @copyright  Copyright (C) 2015 - 2026 Open Source Matters, Inc. All rights reserved.
  * @license    http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License Version 2 or Later
  */
 
@@ -22,7 +22,7 @@ class PlgContentJoomlarrssbScript extends InstallerScript
 	 */
 	public function __construct()
 	{
-		$this->minimumJoomla = '3.9';
+		$this->minimumJoomla = '3.10';
 		$this->minimumPhp    = '7.2.5';
 	}
 }
