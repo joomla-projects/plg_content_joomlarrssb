@@ -1,3 +1,7 @@
+/* Keep icons on one line on all devices */
+.rrssb-buttons {
+    display: inline-block;
+}
 .rrssb-buttons li a {
     border-radius: 0;
 }
@@ -46,4 +50,17 @@
 
 .rrssb-buttons li.rrssb-twitter a .rrssb-text {
 	color: #000333;
+}
+
+/* Adds X (formely Twitter) icon style */
+.rrssb-buttons li.rrssb-x-twitter a {
+	background-color: #272727;
+}
+
+.rrssb-buttons li.rrssb-x-twitter a:hover {
+	background-color: #000;
+}
+
+.rrssb-buttons li.rrssb-x-twitter a .rrssb-text {
+	color: #fff;
 }
